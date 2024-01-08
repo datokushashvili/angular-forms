@@ -1,0 +1,16 @@
+<form [formGroup]="form">
+    <div formArrayName="passenger">
+        <div *ngFor="let passengerGroup of passenger?.controls; let i = index" [formGroupName]="i">
+            <h3>passenger - {{i + 1}}</h3>
+            <input type="text" formControlName="name" placeholder="name" />
+            <input type="text" formControlName="address" placeholder="address" />
+            <input type="text" formControlName="number" placeholder="number" />
+            <input type="text" formControlName="email" placeholder="email" />
+        </div>
+    </div>
+
+    <button (click)="addPassenger()">Add Passenger</button>
+    <button (click)="removePassenger()">Remove Passenger</button>
+    <button type="submit" class="btn btn-primary" (click)="onSubmit()" [disabled]="form.invalid">Sign
+        up</button>
+</form>

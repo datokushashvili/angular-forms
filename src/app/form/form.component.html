@@ -1,0 +1,239 @@
+<div class="registration-form mx-auto my-5 p-3 p-lg-5">
+    <h1>Registration Form</h1>
+    <p>Fill out the form carefully for registration</p>
+    <form class="mt-5" [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-row d-flex flex-column gap-4">
+            <div class="student-name" formGroupName="name">
+                <h2>Name</h2>
+                <div class="student-name-inputs d-flex justify-content-between gap-4 w-100">
+                    <div class="form-group w-100">
+                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder=""
+                            formControlName="firstName">
+                        <div>
+                            <label for="firstName">First Name</label>
+
+                            <div *ngIf="registrationForm.get('name.firstName')?.invalid && (registrationForm.get('name.firstName')?.dirty || registrationForm.get('name.firstName')?.touched)"
+                                class="alertMessage">
+                                <div *ngIf="registrationForm.get('name.firstName')?.errors?.['required']">
+                                    Required
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group w-100">
+                        <input type="text" class="form-control" id="middleName" name="middleName" placeholder=""
+                            formControlName="middleName">
+                        <label for="middleName">Middle Name</label>
+                    </div>
+                    <div class="form-group w-100">
+                        <input type="text" class="form-control" id="lasttName" name="lastName" placeholder=""
+                            formControlName="lastName">
+                        <div>
+                            <label for="lastName">Last Name</label>
+                            <div *ngIf="registrationForm.get('name.lastName')?.invalid && (registrationForm.get('name.lastName')?.dirty || registrationForm.get('name.lastName')?.touched)"
+                                class="alertMessage">
+                                <div *ngIf="registrationForm.get('name.lastName')?.errors?.['required']">
+                                    Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="email-and-mobile d-flex justify-content-between gap-5 w-100">
+                <div class="form-group">
+                    <div class="d-flex align-items-center">
+                        <label class="text-nowrap" for="email">E-mail</label>
+                        <div *ngIf="registrationForm.controls.email.invalid && (registrationForm.controls.email.dirty || registrationForm.controls.email.touched)"
+                            class="alertMessage">
+                            <div *ngIf="registrationForm.controls.email.errors?.['required']">
+                                Required
+                            </div>
+                            <div *ngIf="registrationForm.controls.email.errors?.['email']">
+                                Please enter a valid email address.
+                            </div>
+                        </div>
+                    </div>
+                    <input type="email" class="form-control" name="email" id="email" placeholder=""
+                        formControlName="email">
+                </div>
+                <div class="form-group">
+                    <div class="d-flex align-items-center">
+                        <label class="text-nowrap" for="mobileNumber">Mobile Number</label>
+                        <div *ngIf="registrationForm.controls.mobileNumber.invalid && (registrationForm.controls.mobileNumber.dirty || registrationForm.controls.mobileNumber.touched)"
+                            class="alertMessage">
+                            <div *ngIf="registrationForm.controls.mobileNumber.errors?.['required']">
+                                Required
+                            </div>
+                        </div>
+                    </div>
+                    <input type="tel" class="form-control" name="mobileNumber" id="mobileNumber" placeholder=""
+                        formControlName="mobileNumber">
+                </div>
+            </div>
+            <div class="phone-and-work d-flex justify-content-between gap-5 w-100">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" placeholder=""
+                        formControlName="phoneNumber">
+                </div>
+                <div class="form-group">
+                    <label for="workNumber">Work Number</label>
+                    <input type="tel" class="form-control" name="workNumber" id="workNumber" placeholder=""
+                        formControlName="workNumber">
+                </div>
+            </div>
+            <div class="password d-flex justify-content-between gap-5 w-100" formGroupName="passwords">
+                <div class="form-group">
+                    <div class="d-flex align-items-center">
+                        <label class="text-nowrap" for="password">Password</label>
+                        <div *ngIf="registrationForm.get('passwords.password')?.invalid && (registrationForm.get('passwords.password')?.dirty || registrationForm.get('passwords.password')?.touched)"
+                            class="alertMessage">
+                            <div *ngIf="registrationForm.get('passwords.password')?.errors?.['required']">
+                                Required
+                            </div>
+                            <div *ngIf="registrationForm.get('passwords.password')?.errors?.['minlength']">
+                                *Password must be a minimum of 8 characters in length.
+                            </div>
+                            <div *ngIf="registrationForm.get('passwords.password')?.errors?.['pattern']">
+                                *Password must contain lowercase, uppercase, and a number
+                            </div>
+                        </div>
+                    </div>
+                    <input type="password" class="form-control" id="password" name="password" placeholder=""
+                        formControlName="password">
+                </div>
+                <div class="form-group">
+                    <div class="d-flex align-items-center">
+                        <label class="text-nowrap" for="confirmPassword">Confirm Password</label>
+                        <div *ngIf="registrationForm.get('passwords.confirmPassword')?.invalid && (registrationForm.get('passwords.confirmPassword')?.dirty || registrationForm.get('passwords.confirmPassword')?.touched)"
+                            class="alertMessage">
+                            <div *ngIf="registrationForm.get('passwords.confirmPassword')?.hasError('mustMatch')">
+                                Passwords must match.
+                            </div>
+                        </div>
+                    </div>
+                    <input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+                        placeholder="" formControlName="confirmPassword">
+                </div>
+            </div>
+            <div class="birth-date-and-gender d-flex justify-content-between gap-5">
+                <div class="birth-date" formGroupName="date">
+                    <h2>Birth Date</h2>
+                    <div class="birth-date-inputs d-flex justify-content-between gap-4">
+                        <div class="form-group w-100">
+                            <select class="form-control" name="month" id="month" formControlName="month">
+                                <option value="">month</option>
+                                <option *ngFor="let month of months" [value]="month">{{month}}</option>
+                            </select>
+                            <label for="month">Month</label>
+                        </div>
+                        <div class="form-group w-100">
+                            <select class="form-control" name="day" id="day" formControlName="day">
+                                <option value="">day</option>
+                                <option *ngFor="let day of days" [value]="day">{{day}}</option>
+                            </select>
+                            <label for="day">Day</label>
+                        </div>
+                        <div class="form-group w-100">
+                            <select class="form-control" name="year" id="year" formControlName="year">
+                                <option value="">year</option>
+                                <option *ngFor="let year of years" [value]="year">{{ year }}</option>
+                            </select>
+                            <label for="year">Year</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="gender">
+                    <h2>Gender</h2>
+                    <div class="gender-inputs">
+                        <div class="form-group">
+                            <select class="form-control" name="gender" id="gender" formControlName="gender">
+                                <option value="">please select</option>
+                                <option value="Male">Male</option>
+                                <option value="Femail">Female</option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="address" formGroupName="address">
+                <h2>Address</h2>
+                <div class="address-inputs mt-4 w-100">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="treetAddress" id="streetAddress" placeholder=""
+                            formControlName="street">
+                        <label for="streetAddress">Street Address</label>
+                    </div>
+                </div>
+                <div class="address-inputs mt-4 w-100">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="streetAddress2" id="streetAddress2" placeholder=""
+                            formControlName="street2">
+                        <label for="streetAddress2">Street Address Line 2</label>
+                    </div>
+                </div>
+                <div class="city-and-state-inputs d-flex justify-content-between gap-5">
+                    <div class="address-inputs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="cityAddress" id="cityAddress" placeholder=""
+                                formControlName="city">
+                            <label for="cityAddress">City</label>
+                        </div>
+                    </div>
+                    <div class="address-inputs">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="stateAddress" id="stateAddress" placeholder=""
+                                formControlName="state">
+                            <label for="stateAddress">State / Province</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="address-inputs">
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="inputAddress" id="inputAddress" placeholder=""
+                            formControlName="zip">
+                        <label for="inputAddress">Postal / Zip Code</label>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-picture d-flex flex-column">
+                <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+                <input type="file" class="custom-file-input border-0" id="validatedCustomFile">
+            </div>
+
+            <div class="positions" formArrayName="positions">
+                <h3>Positions (max 5)</h3>
+                <input type="text" name="text" class="form-control mb-2"
+                    *ngFor="let position of positions.controls; index as i" placeholder="position"
+                    [formControlName]="i">
+                <button class="btn btn-success mb-2" type="button" (click)="addPositions()">Add position</button>
+            </div>
+        </div>
+        <div class="submited" *ngIf="submited">
+            <span>
+                Form submited
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="green" class="bi bi-check2-circle"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+                    <path
+                        d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+                </svg>
+            </span>
+
+            <button (click)="submitedClose()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="white" class="bi bi-x-circle"
+                    viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                    <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </button>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="submitForm()" [disabled]="registrationForm.invalid">Sign
+            up</button>
+    </form>
+</div>

@@ -1,0 +1,115 @@
+.registration-form {
+    background-color: rgb(255, 255, 255);
+    max-width: 1200px;
+
+    form {
+        .form-row {
+
+            input,
+            select {
+                border: 1px solid rgb(148, 148, 148);
+            }
+
+            label {
+                margin: 8px 0;
+            }
+
+            h2 {
+                font-size: 23px;
+            }
+
+            .alertMessage {
+                div {
+                    color: red;
+                    margin-left: 5px;
+
+                }
+
+            }
+
+            .student-name {
+                .student-name-inputs {
+
+                    div {
+                        width: 100%;
+
+                        div {
+                            display: flex;
+                            align-items: center;
+
+
+
+                            label {
+                                white-space: nowrap;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            .birth-date-and-gender {
+                .birth-date {
+                    width: 50%;
+
+                    .birth-date-inputs {
+                        div {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                .gender {
+                    width: 50%;
+                }
+            }
+
+            .address {
+                .address-inputs {
+                    margin-top: 20px;
+                    width: 100%;
+                }
+            }
+
+            .email-and-mobile,
+            .phone-and-work,
+            .password {
+                div {
+                    width: 100%;
+
+                    label {
+                        font-size: 23px;
+                        font-weight: 600;
+                    }
+                }
+            }
+        }
+
+        .submited {
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 40px;
+            width: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            height: 100vh;
+
+            span {
+                svg {
+                    margin-bottom: 8px;
+                }
+            }
+
+            button {
+                border: 0;
+                background: transparent;
+            }
+        }
+
+    }
+}
